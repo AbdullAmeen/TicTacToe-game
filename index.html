@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Tic Tac</title>
+
+      <link rel="stylesheet" href="style.css">
+</head>
+
+<!--  this was made for learning purpose -->
+
+<body>
+      <div class="alert">
+            <!-- This game is meant to be a casual and fun experience. By using this game, you agree to the following: <br>
+
+            No Gambling or Betting: <br>
+            You must not use this game for gambling, betting, or any form of wagering, whether involving money, digital
+            assets, or anything else of value. This includes using the game to facilitate or promote real-money games or
+            competitions. <br>
+
+            Play for Fun: <br>
+            This game is designed for entertainment purposes only. Please play it just for fun, not for profit or
+            competition that involves risk or reward. <br>
+
+            Balance Your Time: <br>
+            Don’t let the game interfere with your important daily activities such as school, work, health, or family
+            responsibilities. Take breaks and make sure your gaming habits stay healthy and balanced. <br> -->
+      </div>
+
+      <h1 class="heading">Tic Tac Toe</h1>
+      <button class="startbtn" id="startbtn">Start Game</button>
+
+      <div class="game-container" id="game-container">
+            <div class="display-score">
+                  <div class="win" id="win">X win : <span>00</span></div>
+                  <div class="loss" id="loss">O win : <span>00</span></div>
+                  <div class="draw" id="draw">draw : <span>00</span></div>
+            </div>
+            <div class="board">
+                  <div cellIndex="0" class="box box1"></div>
+                  <div cellIndex="1" class="box box2"></div>
+                  <div cellIndex="2" class="box box3"></div>
+                  <div cellIndex="3" class="box box4"></div>
+                  <div cellIndex="4" class="box box5"></div>
+                  <div cellIndex="5" class="box box6"></div>
+                  <div cellIndex="6" class="box box7"></div>
+                  <div cellIndex="7" class="box box8"></div>
+                  <div cellIndex="8" class="box box9"></div>
+
+                  <div id="continue-btn-box">
+                        <button id="continue-btn">Continue</button>
+                  </div>
+            </div>
+
+            <div class="footer">
+                  <button id="restartbtn" class="restartbtn">Restart</button>
+                  <button id="quitebtn" class="quitebtn">Quite</button>
+            </div>
+      </div>
+      <div class="runningStatus"></div>
+
+      <!-- <div class="know">
+            upcoming features :
+            > instructions for computer screens.
+            > more user intracted.
+            > vs computer.
+            > Set count.
+      </div> -->
+
+      <script src="script.js"></script>
+</body>
+
+</html>
