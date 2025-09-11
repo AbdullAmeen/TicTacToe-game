@@ -1,5 +1,7 @@
 // Calling elements
 const startbtn = document.getElementById("startbtn");
+const playWithComputerBtn = document.querySelector("#playwithcomputer");
+
 const quitbtn = document.getElementById("quitebtn");
 const heading = document.querySelector(".heading");
 const box = document.querySelectorAll(".box");
@@ -10,6 +12,10 @@ const runningStatus = document.querySelector(".runningStatus");
 const winEl = document.querySelector("#win span");
 const lossEl = document.querySelector("#loss span");
 const drawEl = document.querySelector("#draw span");
+
+const gameContainer = document.getElementById("game-container");
+
+let isComputerMode = false;
 
 // Win conditions
 const winCondition = [
@@ -34,70 +40,74 @@ let lossCount = 0;
 let drawCount = 0;
 
 let continueBtn = document.getElementById("continue-btn");
+
 // Initialize the game
 function initializeGame() {
-  box.forEach((boxEl) => boxEl.addEventListener("click", boxClicked));
+  box.forEach((boxEl) => {
+    boxEl.removeEventListener("click", boxClickedCom);
+    boxEl.removeEventListener("click", boxClicked);
+    boxEl.addEventListener("click", boxClicked);
+  });
   restartbtn.addEventListener("click", restartGame);
   continueBtn.addEventListener("click", restartGame);
   gameActive = true;
 }
 
-// Update running status
-function setStatus(message) {
-  runningStatus.textContent = message;
+// Initialize computer game
+function initializeComGame() {
+  box.forEach((boxEl) => {
+    boxEl.removeEventListener("click", boxClicked);
+    boxEl.removeEventListener("click", boxClickedCom);
+    boxEl.addEventListener("click", boxClickedCom);
+  });
+  restartbtn.addEventListener("click", restartGame);
+  continueBtn.addEventListener("click", restartGame);
+  gameActive = true;
 }
 
-// Handle box click
-function boxClicked() {
-  const boxIndex = this.getAttribute("cellIndex");
-  if (options[boxIndex] !== "" || !gameActive) {
-    return;
+function boxClickedCom() {
+  const boxIndex = Array.from(box).indexOf(this);
+  if (options[boxIndex] !== "" || !gameActive) return;
+  updateBox(this, boxIndex);
+  checkWin();
+  if (gameActive) {
+    setTimeout(makeComputerMove, 400); // Delay for realism
   }
+}
 
+function makeComputerMove() {
+  const availableBoxes = [];
+  for (let i = 0; i < options.length; i++) {
+    if (options[i] === "") availableBoxes.push(i);
+  }
+  if (availableBoxes.length === 0) return;
+  const randomIndex = Math.floor(Math.random() * availableBoxes.length);
+  const computerMove = availableBoxes[randomIndex];
+  updateBox(box[computerMove], computerMove, "o");
+  checkWin();
+}
+
+// Add this function for player-vs-player mode
+function boxClicked() {
+  const boxIndex = Array.from(box).indexOf(this);
+  if (options[boxIndex] !== "" || !gameActive) return;
   updateBox(this, boxIndex);
   checkWin();
 }
 
-// Fill the clicked box
-function updateBox(box, index) {
-  options[index] = currentPlayer;
-  box.textContent = currentPlayer;
+// Open computer game screen
+function openComGame(e) {
+  isComputerMode = true;
+  gameContainer.style.display = "flex";
+  heading.style.display = "none";
+  startbtn.style.display = "none";
+  playWithComputerBtn.style.display = "none";
+
+  initializeComGame(); // Call the correct function
+  setStatus(`(${currentPlayer.toUpperCase()}) your turn`);
 }
 
-// Switch player
-function changePlayer() {
-  currentPlayer = currentPlayer === "x" ? "o" : "x";
-}
-
-// Check for win/draw and update score
-function checkWin() {
-  let roundWon = false;
-
-  for (let i = 0; i < winCondition.length; i++) {
-    const [a, b, c] = winCondition[i];
-    if (options[a] && options[a] === options[b] && options[a] === options[c]) {
-      roundWon = true;
-      break;
-    }
-  }
-
-  if (roundWon) {
-    setStatus(`Player ${currentPlayer.toUpperCase()} has won! 🎉`);
-    updateScore(currentPlayer === "x" ? "win" : "loss");
-    continueBtn.style.display = "block";
-    gameActive = false;
-  } else if (!options.includes("")) {
-    setStatus("It's a draw! 🤝");
-    updateScore("draw");
-    continueBtn.style.display = "block";
-    gameActive = false;
-  } else {
-    changePlayer();
-    setStatus(`Player ${currentPlayer.toUpperCase()}'s turn`);
-  }
-}
-
-// Update score based on result
+//update score fundtion
 function updateScore(result) {
   if (result === "win") {
     winCount++;
@@ -111,6 +121,65 @@ function updateScore(result) {
   }
 }
 
+// Update running status
+function setStatus(message) {
+  runningStatus.textContent = message;
+}
+
+// Fill the clicked box
+function updateBox(box, index, player = currentPlayer) {
+  options[index] = player;
+  box.textContent = player;
+}
+
+// Switch player
+function changePlayer() {
+  currentPlayer = currentPlayer === "x" ? "o" : "x";
+}
+
+function checkWin() {
+  let roundWon = false;
+  let winnerIndex = null;
+
+  for (let i = 0; i < winCondition.length; i++) {
+    const [a, b, c] = winCondition[i];
+    if (options[a] && options[a] === options[b] && options[a] === options[c]) {
+      roundWon = true;
+      winnerIndex = a;
+      break;
+    }
+  }
+
+  if (roundWon) {
+    let resultMessage = "";
+    const winnerSymbol = options[winnerIndex];
+
+    if (isComputerMode) {
+      resultMessage = winnerSymbol === "x" ? "You win!" : "Computer wins!";
+      updateScore(winnerSymbol === "x" ? "win" : "loss");
+    } else {
+      resultMessage = `Player ${winnerSymbol.toUpperCase()} wins!`;
+      updateScore("win"); // Optional: you can decide if you want to increment win/loss for each player separately
+    }
+
+    setStatus(resultMessage);
+    continueBtn.style.display = "block";
+    gameActive = false;
+  } else if (!options.includes("")) {
+    setStatus("It's a draw! ");
+    updateScore("draw");
+    continueBtn.style.display = "block";
+    gameActive = false;
+  } else {
+    changePlayer();
+    if (isComputerMode) {
+      setStatus(currentPlayer === "x" ? "Your move" : "Computer's move");
+    } else {
+      setStatus(`Player ${currentPlayer.toUpperCase()}'s turn`);
+    }
+  }
+}
+
 // Restart the game board
 function restartGame() {
   options = ["", "", "", "", "", "", "", "", ""];
@@ -119,14 +188,29 @@ function restartGame() {
   box.forEach((box) => (box.textContent = ""));
   setStatus(`Player ${currentPlayer.toUpperCase()}'s turn`);
   continueBtn.style.display = "none";
+
+  // Remove all listeners, then re-initialize based on mode
+  box.forEach((boxEl) => {
+    boxEl.removeEventListener("click", boxClicked);
+    boxEl.removeEventListener("click", boxClickedCom);
+  });
+
+  if (isComputerMode) {
+    initializeComGame();
+    setStatus("Your move");
+  } else {
+    initializeGame();
+    setStatus(`Player ${currentPlayer.toUpperCase()}'s turn`);
+  }
 }
 
-// Open game screen
-const gameContainer = document.getElementById("game-container");
+// Open friend game screen
 function openGame() {
+  isComputerMode = false;
   gameContainer.style.display = "flex";
   heading.style.display = "none";
   startbtn.style.display = "none";
+  playWithComputerBtn.style.display = "none";
 
   initializeGame();
   setStatus(`Player ${currentPlayer.toUpperCase()}'s turn`);
@@ -140,13 +224,16 @@ function quitGame() {
 // Start and quit buttons
 startbtn.addEventListener("click", openGame);
 quitbtn.addEventListener("click", quitGame);
+playWithComputerBtn.addEventListener("click", openComGame);
 
 // keyboard events
 document.addEventListener("keypress", (e) => {
-  if (e.key === "Enter") {
+  if (e.key === "Enter" || e.key ===" ") {
     openGame();
   } else if (e.key === "q") {
     quitGame();
+  } else if (e.key === "c") {
+    openComGame();
   }
 });
 

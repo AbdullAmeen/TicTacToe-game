@@ -16,9 +16,38 @@ span {
   cursor: default;
 }
 
+:root {
+  --primary-color: #48a7ff;
+  --secondary-color: #d3dae0;
+  --secondary-color-light: #e3ecf3;
+}
+
+.tooltip-text {
+  font-size: 16px;
+        visibility: hidden;
+        width: 150px;
+        background-color: rgb(44, 44, 44);
+        color: #fff;
+        text-align: center;
+        padding: 5px 0;
+        border-radius: 6px;
+        position: absolute;
+        z-index: 1;
+        bottom: -80%; /* Position above the container */
+        left: 50%;
+        margin-left: -60px; /* Center the tooltip */
+    }
+
+    .playwithcomputer:hover .tooltip-text {
+        opacity: 0.8;
+        visibility: visible;
+    }
+
+/* body styles */
 body {
-  background-color: rgb(46, 42, 42);
+  background-color: var(--primary-color);
   height: 100vh;
+  overflow-y: hidden;
 
   display: flex;
   flex-direction: column;
@@ -27,30 +56,41 @@ body {
 }
 
 .heading {
-  color: white;
+  font-family: sans-serif;
+  color: rgb(255, 255, 255);
+  font-weight: 600;
   font-size: 7rem;
   margin-bottom: 30px;
 }
 
-.startbtn {
-  color: white;
-  background-color: rgb(85, 40, 102);
-  padding: 18px 28px;
-  font-size: 3rem;
+.home-btn-box {
+  display: flex;
+  gap: 20px;
+}
+
+.startbtn,.playwithcomputer {
+  width: 300px;
+  height: 70px;
+  
+  padding: 10px;
+  font-size: 2rem;
+  color: rgb(0, 0, 0);
+  border: 2px solid black;
   border-radius: 18px;
-  box-shadow: 0 0 10px white;
+  background-color: var(--secondary-color);
   transition: all 0.5s ease;
 }
 
-.startbtn:hover {
-  background-color: rgb(72, 39, 83);
+.startbtn:hover ,.playwithcomputer:hover{
+  background-color: var(--secondary-color-light);
+  scale: 1.05;
 }
 
 .game-container {
   position: absolute;
   width: 500px;
   height: 500px;
-  background-color: #4d344c;
+  background-color: var(--secondary-color);
   border-radius: 6px;
 
   display: none;
@@ -105,7 +145,6 @@ body {
 .board {
   width: 350px;
   height: 350px;
-  background-color: #3d2c3d;
   border-radius: 22px;
   padding: 22px;
 
@@ -140,6 +179,10 @@ body {
   border-radius: 0 0 22px 0;
 }
 
+.box:hover {
+  background-color: #131212e0;
+}
+
 .footer {
   width: 100%;
   background-color: #131212e0;
@@ -149,16 +192,17 @@ body {
   padding: 6px;
 }
 
-.footer button:hover {
-  background-color: rgba(0, 0, 0, 0.596);
-}
 
 .footer button {
-  padding: 0 20px;
+  width: 100px;
   font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.938);
   background-color: rgba(0, 0, 0, 0.418);
-  border-radius: 12px;
+}
+
+.footer button:hover {
+  background-color: rgba(0, 0, 0, 0.596);
+  scale: 1.05;
 }
 
 .runningStatus {
@@ -210,6 +254,11 @@ body {
   .heading {
     font-size: 6rem;
   }
+  .startbtn,
+  .playwithcomputer {
+    font-size: 1.7rem;
+    width: 270px;
+  }
   .game-container {
     width: 450px;
     height: 450px;
@@ -234,11 +283,14 @@ body {
     padding: 12px;
   }
   .heading {
-    font-size: 4rem;
+    font-size: 5rem;
   }
-  .startbtn {
-    padding: 14px 22px;
-    font-size: 2.2rem;
+  .home-btn-box {
+    flex-direction: column;
+  }
+  .startbtn, .playwithcomputer {
+    font-size: 1.5rem;
+    width: 240px;
   }
   .game-container {
     width: 400px;
@@ -266,11 +318,12 @@ body {
     padding: 12px;
   }
   .heading {
-    font-size: 3rem;
+    font-size: 4rem;
   }
-  .startbtn {
-    padding: 12px 20px;
-    font-size: 2rem;
+    .startbtn, .playwithcomputer {
+    font-size: 1.4rem;
+    width: 220px;
+    height: 60px;
   }
   .game-container {
     width: 310px;
