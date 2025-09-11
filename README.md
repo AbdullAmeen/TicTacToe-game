@@ -1,10 +1,1 @@
-# 🎮 TicTacToe
-
-A fun and engaging [2D] game built with [JavaScript]. Play and challenge yourself!
-
-## 🚀 Features
-
-- 🎯 Addictive gameplay
-- 🖥️ Play with computer
-- 🎂 Play with your friend
 
