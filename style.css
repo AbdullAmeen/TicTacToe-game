@@ -20,6 +20,7 @@ span {
   --primary-color: #48a7ff;
   --secondary-color: #d3dae0;
   --secondary-color-light: #e3ecf3;
+  --dark-theme-color: #0c0b0b;
 }
 
 .tooltip-text {
@@ -45,14 +46,23 @@ span {
 
 /* body styles */
 body {
-  background-color: var(--primary-color);
   height: 100vh;
+  width: 100vw;
   overflow-y: hidden;
-
+  
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+body.default{
+  background-color: var(--primary-color);
+}
+body.dark{
+  background-color: var(--dark-theme-color);
+}
+body.dark .instruction{
+  background-color: #6b6b6b;
 }
 
 .heading {
@@ -90,7 +100,7 @@ body {
   position: absolute;
   width: 500px;
   height: 500px;
-  background-color: var(--secondary-color);
+  /* background-color: var(--secondary-color); */
   border-radius: 6px;
 
   display: none;
@@ -98,6 +108,9 @@ body {
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
+
+  position: relative;
+  bottom: 70px;
 
   animation: ease-in-out 0.5s gameContainer;
 }
@@ -125,6 +138,7 @@ body {
   align-items: center;
   justify-content: space-around;
   background-color: #131212e0;
+  border-radius: 12px;
 
   width: 100%;
   height: 50px;
@@ -138,7 +152,7 @@ body {
 
 .display-score div span {
   color: red;
-  background-color: black;
+  /* background-color: black; */
   padding: 4px;
 }
 
@@ -157,7 +171,7 @@ body {
 }
 
 .box {
-  background-color: rgba(0, 0, 0, 0.747);
+  background-color: #363636;
   color: white;
   font-size: 5rem;
   font-family: cursive;
@@ -180,43 +194,43 @@ body {
 }
 
 .box:hover {
-  background-color: #131212e0;
+  background-color: #3f3f3fe0;
 }
 
 .footer {
   width: 100%;
-  background-color: #131212e0;
   height: 50px;
   display: flex;
   justify-content: space-around;
   padding: 6px;
+  background-color: #131212e0;
+  border-radius: 12px;
+
+  position: relative;
+  bottom: 20px;
 }
 
 
 .footer button {
   width: 100px;
   font-size: 1.5rem;
-  color: rgba(255, 255, 255, 0.938);
-  background-color: rgba(0, 0, 0, 0.418);
+  color: rgba(212, 212, 212, 0.938);
+  background-color: transparent;
 }
 
 .footer button:hover {
-  background-color: rgba(0, 0, 0, 0.596);
-  scale: 1.05;
+  color: rgb(116, 196, 158);
+  scale: 1.1;
 }
 
 .runningStatus {
   color: white;
-  font-size: 2rem;
-  position: absolute;
-  top: 50px;
+  font-size: 2.5rem;
 }
 
 #continue-btn-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
+    position: absolute;
+    bottom: 450px;
 }
 
 #continue-btn {
@@ -224,13 +238,9 @@ body {
   color: white;
   width: 200px;
   height: 80px;
-  position: absolute;
-  top: 200px;
-  left: 150px;
   font-size: 2rem;
   border-radius: 12px;
   display: none;
-  box-shadow: 0px 0px 10px 2px rgb(0, 0, 0);
 }
 #continue-btn:hover {
   background-color: rgb(31, 31, 31);
@@ -242,6 +252,44 @@ body {
   -webkit-user-select: none; /* For Safari */
   -moz-user-select: none; /* For Firefox */
   -ms-user-select: none; /* For old IE */
+}
+
+.instruction{
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 30px;
+  background-color: #3a8cd8;
+
+  display: flex;
+  align-items: center;
+  padding: 10px;
+
+  color: #dadada;
+}
+#theme {
+  background-color: rgba(255, 255, 255, 0.199);
+  color: #dadada;
+  position: absolute;
+  right: 10px;
+}
+#theme-choice{
+  background-color: rgb(218, 218, 218);
+  color: rgb(49, 49, 49);
+  padding: 6px;
+
+  position: absolute;
+  right: 10px;
+  top: -40px;
+
+  display: none;
+}
+#theme-choice p:hover {
+  background-color: rgb(185, 185, 185);
+}
+
+#theme-choice.active {
+  display: block;
 }
 
 /* media queries */
@@ -260,13 +308,14 @@ body {
     width: 270px;
   }
   .game-container {
-    width: 450px;
-    height: 450px;
+    width: 500px;
+    height: 500px;
   }
   .board {
-    width: 300px;
-    height: 300px;
+    width: 350px;
+    height: 350px;
     padding: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   .box {
     font-size: 4rem;
@@ -293,12 +342,12 @@ body {
     width: 240px;
   }
   .game-container {
-    width: 400px;
-    height: 400px;
+    width: 450px;
+    height: 450px;
   }
   .board {
-    width: 250px;
-    height: 250px;
+    width: 300px;
+    height: 300px;
     padding: 12px;
   }
   .box {
@@ -326,19 +375,30 @@ body {
     height: 60px;
   }
   .game-container {
-    width: 310px;
-    height: 310px;
+    width: 350px;
+    height: 350px;
   }
   .board {
-    width: 200px;
-    height: 200px;
+    width: 230px;
+    height: 230px;
+    /* width: 200px;
+    height: 200px; */
     padding: 8px;
   }
   .box {
     font-size: 2rem;
   }
+  .display-score{
+    height: 40px;
+  }
   .display-score div {
     font-size: 1rem;
+    border-radius: 8px;
+  }
+  .footer{
+    height: 40px;
+    border-radius: 8px;
+    bottom: 16px;
   }
   .footer button {
     font-size: 1rem;

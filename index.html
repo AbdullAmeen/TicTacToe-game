@@ -30,6 +30,7 @@
       </div>
 
       <h1 class="heading">Tic Tac Toe</h1>
+
       <div class="home-btn-box">
             <button class="startbtn" id="startbtn">PLAY WITH FRIEND</button>
             <button class="playwithcomputer" id="playwithcomputer">PLAY WITH COMPUTER <span class="tooltip-text">Very Easy!</span></button>
@@ -41,6 +42,12 @@
                   <div class="loss" id="loss">O win : <span>00</span></div>
                   <div class="draw" id="draw">draw : <span>00</span></div>
             </div>
+
+            <div class="footer">
+                  <button id="restartbtn" class="restartbtn">Restart</button>
+                  <button id="quitebtn" class="quitebtn">Quite</button>
+            </div>
+
             <div class="board">
                   <div cellIndex="0" class="box box1"></div>
                   <div cellIndex="1" class="box box2"></div>
@@ -51,18 +58,23 @@
                   <div cellIndex="6" class="box box7"></div>
                   <div cellIndex="7" class="box box8"></div>
                   <div cellIndex="8" class="box box9"></div>
-
-                  <div id="continue-btn-box">
-                        <button id="continue-btn">Continue</button>
-                  </div>
             </div>
+            
+      </div>
+      <div id="continue-btn-box">
+            <button id="continue-btn">Continue</button>
+      </div>
 
-            <div class="footer">
-                  <button id="restartbtn" class="restartbtn">Restart</button>
-                  <button id="quitebtn" class="quitebtn">Quite</button>
+      <div class="runningStatus"></div>
+
+      <div class="instruction">
+            <span>q for quit</span>
+            <button id="theme">Theme</button>
+            <div id="theme-choice">
+                  <p id="dark-theme">.dark ⚫</p>
+                  <p id="default-theme">.default 🔵</p>
             </div>
       </div>
-      <div class="runningStatus"></div>
 
       <!-- <div class="know">
             upcoming features :

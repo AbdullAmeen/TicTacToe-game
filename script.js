@@ -158,17 +158,28 @@ function checkWin() {
       resultMessage = winnerSymbol === "x" ? "You win!" : "Computer wins!";
       updateScore(winnerSymbol === "x" ? "win" : "loss");
     } else {
-      resultMessage = `Player ${winnerSymbol.toUpperCase()} wins!`;
-      updateScore("win"); // Optional: you can decide if you want to increment win/loss for each player separately
+      resultMessage = `Player ${winnerSymbol.toUpperCase()} wins!🎉`;
+      updateScore(winnerSymbol === "x" ? "win" : "loss");
     }
 
     setStatus(resultMessage);
     continueBtn.style.display = "block";
+    if ((continueBtn.style.display = "block")) {
+      const board = document.querySelector(".board");
+      board.style.filter = "blur(4px)";
+      board.style.pointerEvents = "none";
+      document.body.addEventListener("keyup", (e) => {});
+    }
     gameActive = false;
   } else if (!options.includes("")) {
     setStatus("It's a draw! ");
     updateScore("draw");
     continueBtn.style.display = "block";
+    if ((continueBtn.style.display = "block")) {
+      const board = document.querySelector(".board");
+      board.style.filter = "blur(4px)";
+      board.style.pointerEvents = "none";
+    }
     gameActive = false;
   } else {
     changePlayer();
@@ -188,6 +199,11 @@ function restartGame() {
   box.forEach((box) => (box.textContent = ""));
   setStatus(`Player ${currentPlayer.toUpperCase()}'s turn`);
   continueBtn.style.display = "none";
+  if ((continueBtn.style.display = "none")) {
+    const board = document.querySelector(".board");
+    board.style.filter = "blur(0px)";
+    board.style.pointerEvents = "auto";
+  }
 
   // Remove all listeners, then re-initialize based on mode
   box.forEach((boxEl) => {
@@ -228,7 +244,7 @@ playWithComputerBtn.addEventListener("click", openComGame);
 
 // keyboard events
 document.addEventListener("keypress", (e) => {
-  if (e.key === "Enter" || e.key ===" ") {
+  if (e.key === "Enter" || e.key === " ") {
     openGame();
   } else if (e.key === "q") {
     quitGame();
@@ -239,3 +255,30 @@ document.addEventListener("keypress", (e) => {
 
 // consoling the alert
 console.log(document.querySelector(".alert").innerHTML);
+
+const theme = document.getElementById("theme");
+const themeChoice = document.getElementById("theme-choice");
+const themeChoiceBtn = document.querySelectorAll("#theme-choice p");
+
+theme.addEventListener("click", () => {
+  themeChoice.classList.toggle("active");
+});
+
+const savedTheme = localStorage.getItem("theme");
+if (savedTheme) {
+  document.body.classList.add(savedTheme);
+}
+
+themeChoiceBtn.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    if (btn.id === "dark-theme") {
+      document.body.className = "dark";
+      localStorage.setItem("theme", "dark");
+      themeChoice.classList.toggle("active");
+    } else if (btn.id === "default-theme") {
+      document.body.className = "default";
+      localStorage.setItem("theme", "default");
+      themeChoice.classList.toggle("active");
+    }
+  });
+});
