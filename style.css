@@ -1,10 +1,12 @@
 /* tic tac game stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&display=swap');
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: monospace;
+  font-family: monospace, system-ui;
+
 }
 
 button {
@@ -174,7 +176,7 @@ body.dark .instruction{
   background-color: #363636;
   color: white;
   font-size: 5rem;
-  font-family: cursive;
+  font-family: "Bitcount Single Ink", system-ui;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -315,14 +317,12 @@ body.dark .instruction{
     width: 350px;
     height: 350px;
     padding: 20px;
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   }
   .box {
     font-size: 4rem;
   }
-  #continue-btn {
-    top: 180px;
-    left: 120px;
+  #continue-btn-box{
+    bottom: 420px;
   }
 }
 
@@ -353,16 +353,63 @@ body.dark .instruction{
   .box {
     font-size: 3rem;
   }
-  #continue-btn {
-    width: 170px;
-    height: 70px;
-    top: 160px;
-    left: 120px;
+}
+
+/* For smaller screens */
+@media only screen and (max-width: 474px) {
+  body {
+    padding: 12px;
+  }
+  .heading {
+    font-size: 4rem;
+  }
+    .startbtn, .playwithcomputer {
+    font-size: 1.4rem;
+    width: 220px;
+    height: 60px;
+  }
+  .game-container {
+    width: 390px;
+    height: 390px;
+  }
+  .board {
+    width: 250px;
+    height: 250px;
+    padding: 8px;
+  }
+  .box {
+    font-size: 2rem;
+  }
+  .display-score{
+    height: 40px;
+  }
+  .display-score div {
+    font-size: 1rem;
+    border-radius: 8px;
+  }
+  .footer{
+    height: 40px;
+    border-radius: 8px;
+    bottom: 20px;
+  }
+  .footer button {
+    font-size: 1rem;
+  }
+    #continue-btn-box{
+    bottom: 440px;
+  }
+  #continue-btn{
+    width: 140px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+    .instruction{
+    display: none;
   }
 }
 
 /* For smaller screens */
-@media only screen and (max-width: 380px) {
+@media only screen and (max-width: 390px) {
   body {
     padding: 12px;
   }
@@ -381,8 +428,6 @@ body.dark .instruction{
   .board {
     width: 230px;
     height: 230px;
-    /* width: 200px;
-    height: 200px; */
     padding: 8px;
   }
   .box {
@@ -398,16 +443,20 @@ body.dark .instruction{
   .footer{
     height: 40px;
     border-radius: 8px;
-    bottom: 16px;
+    bottom: 8px;
   }
   .footer button {
     font-size: 1rem;
   }
-  #continue-btn {
-    width: 150px;
-    height: 50px;
-    font-size: 1.5rem;
-    top: 120px;
-    left: 80px;
+    #continue-btn-box{
+    bottom: 440px;
+  }
+  #continue-btn{
+    width: 140px;
+    height: 60px;
+    font-size: 1.8rem;
+  }
+  .instruction{
+    display: none;
   }
 }
