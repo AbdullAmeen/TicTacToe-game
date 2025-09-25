@@ -6,7 +6,6 @@
   padding: 0;
   box-sizing: border-box;
   font-family: monospace, system-ui;
-
 }
 
 button {
@@ -85,7 +84,7 @@ body.dark .instruction{
   height: 70px;
   
   padding: 10px;
-  font-size: 2rem;
+  font-size: 1.5rem;
   color: rgb(0, 0, 0);
   border: 2px solid black;
   border-radius: 18px;
@@ -102,7 +101,6 @@ body.dark .instruction{
   position: absolute;
   width: 500px;
   height: 500px;
-  /* background-color: var(--secondary-color); */
   border-radius: 6px;
 
   display: none;
@@ -154,7 +152,6 @@ body.dark .instruction{
 
 .display-score div span {
   color: red;
-  /* background-color: black; */
   padding: 4px;
 }
 
@@ -306,7 +303,7 @@ body.dark .instruction{
   }
   .startbtn,
   .playwithcomputer {
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     width: 270px;
   }
   .game-container {
@@ -338,7 +335,7 @@ body.dark .instruction{
     flex-direction: column;
   }
   .startbtn, .playwithcomputer {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     width: 240px;
   }
   .game-container {
@@ -364,9 +361,9 @@ body.dark .instruction{
     font-size: 4rem;
   }
     .startbtn, .playwithcomputer {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     width: 220px;
-    height: 60px;
+    height: 70px;
   }
   .game-container {
     width: 390px;
@@ -417,9 +414,9 @@ body.dark .instruction{
     font-size: 4rem;
   }
     .startbtn, .playwithcomputer {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     width: 220px;
-    height: 60px;
+    height: 70px;
   }
   .game-container {
     width: 350px;
