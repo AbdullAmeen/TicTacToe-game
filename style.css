@@ -405,7 +405,7 @@ body.dark .instruction{
   }
 }
 
-/* For smaller screens */
+/* For very smaller screens */
 @media only screen and (max-width: 390px) {
   body {
     padding: 12px;
@@ -421,6 +421,7 @@ body.dark .instruction{
   .game-container {
     width: 350px;
     height: 350px;
+    overflow: visible;
   }
   .board {
     width: 230px;
@@ -432,6 +433,11 @@ body.dark .instruction{
   }
   .display-score{
     height: 40px;
+    background-color: transparent;
+
+    flex-direction: column;
+    position: relative;
+    bottom: 20px;
   }
   .display-score div {
     font-size: 1rem;
@@ -439,11 +445,16 @@ body.dark .instruction{
   }
   .footer{
     height: 40px;
+    width: 60%;
     border-radius: 8px;
-    bottom: 8px;
+    background-color: transparent;
+    
+    position: absolute;
+    bottom: -130px;
   }
   .footer button {
     font-size: 1rem;
+    background-color: rgb(14, 14, 14);
   }
     #continue-btn-box{
     bottom: 440px;
@@ -456,4 +467,10 @@ body.dark .instruction{
   .instruction{
     display: none;
   }
+  .runningStatus{
+    font-size: 1.5rem;
+    position: relative;
+    bottom: 40px;
+  }
 }
+
