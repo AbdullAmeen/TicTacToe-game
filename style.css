@@ -457,12 +457,12 @@ body.dark .instruction{
     background-color: rgb(14, 14, 14);
   }
     #continue-btn-box{
-    bottom: 440px;
+    bottom: 300px;
   }
   #continue-btn{
     width: 140px;
     height: 60px;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
   }
   .instruction{
     display: none;
