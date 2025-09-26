@@ -1,5 +1,5 @@
 /* tic tac game stylesheet */
-@import url('https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Single+Ink:wght@100..900&display=swap");
 
 * {
   margin: 0;
@@ -26,44 +26,78 @@ span {
 
 .tooltip-text {
   font-size: 16px;
-        visibility: hidden;
-        width: 150px;
-        background-color: rgb(44, 44, 44);
-        color: #fff;
-        text-align: center;
-        padding: 5px 0;
-        border-radius: 6px;
-        position: absolute;
-        z-index: 1;
-        bottom: -80%; /* Position above the container */
-        left: 50%;
-        margin-left: -60px; /* Center the tooltip */
-    }
+  visibility: hidden;
+  width: 150px;
+  background-color: rgb(44, 44, 44);
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  bottom: -80%; /* Position above the container */
+  left: 50%;
+  margin-left: -60px; /* Center the tooltip */
+}
 
-    .playwithcomputer:hover .tooltip-text {
-        opacity: 0.8;
-        visibility: visible;
-    }
+.playwithcomputer:hover .tooltip-text {
+  opacity: 0.8;
+  visibility: visible;
+}
 
 /* body styles */
 body {
   height: 100vh;
   width: 100vw;
   overflow-y: hidden;
-  
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-body.default{
+body.default {
   background-color: var(--primary-color);
 }
-body.dark{
+body.dark {
   background-color: var(--dark-theme-color);
 }
-body.dark .instruction{
+body.dark .instruction {
   background-color: #6b6b6b;
+}
+body.dark #theme-choice {
+  background-color: #3d3d3d;
+  color: rgb(207, 207, 207);
+}
+body.dark #theme-choice p{
+  background-color: #494949;
+}
+body.dark #theme-choice p:hover{
+  background-color: #616161;
+}
+
+body.gradient {
+  background-image: linear-gradient(to bottom right, #883997, #1a5bbd);
+}
+body.gradient .instruction {
+  background-color: #1a46bd;
+}
+body.gradient .home-btn-box button {
+  border: none;
+  color: rgb(49, 0, 128);
+}
+body.gradient .board div {
+  background-color: #ac89ff;
+}
+body.gradient .display-score {
+  background-color: #ffffff20;
+}
+body.gradient .display-score div span {
+  color: rgb(148, 192, 27);
+  font-size: 20px;
+}
+body.gradient .footer {
+  background-color: #ffffff20;
 }
 
 .heading {
@@ -79,10 +113,11 @@ body.dark .instruction{
   gap: 20px;
 }
 
-.startbtn,.playwithcomputer {
+.startbtn,
+.playwithcomputer {
   width: 300px;
   height: 70px;
-  
+
   padding: 10px;
   font-size: 1.5rem;
   color: rgb(0, 0, 0);
@@ -92,7 +127,8 @@ body.dark .instruction{
   transition: all 0.5s ease;
 }
 
-.startbtn:hover ,.playwithcomputer:hover{
+.startbtn:hover,
+.playwithcomputer:hover {
   background-color: var(--secondary-color-light);
   scale: 1.05;
 }
@@ -209,7 +245,6 @@ body.dark .instruction{
   bottom: 20px;
 }
 
-
 .footer button {
   width: 100px;
   font-size: 1.5rem;
@@ -228,8 +263,8 @@ body.dark .instruction{
 }
 
 #continue-btn-box {
-    position: absolute;
-    bottom: 450px;
+  position: absolute;
+  bottom: 450px;
 }
 
 #continue-btn {
@@ -253,7 +288,7 @@ body.dark .instruction{
   -ms-user-select: none; /* For old IE */
 }
 
-.instruction{
+.instruction {
   position: absolute;
   bottom: 0;
   width: 100vw;
@@ -272,14 +307,14 @@ body.dark .instruction{
   position: absolute;
   right: 10px;
 }
-#theme-choice{
+#theme-choice {
   background-color: rgb(218, 218, 218);
   color: rgb(49, 49, 49);
   padding: 6px;
 
   position: absolute;
   right: 10px;
-  top: -40px;
+  top: -70px;
 
   display: none;
 }
@@ -318,7 +353,7 @@ body.dark .instruction{
   .box {
     font-size: 4rem;
   }
-  #continue-btn-box{
+  #continue-btn-box {
     bottom: 420px;
   }
 }
@@ -334,7 +369,8 @@ body.dark .instruction{
   .home-btn-box {
     flex-direction: column;
   }
-  .startbtn, .playwithcomputer {
+  .startbtn,
+  .playwithcomputer {
     font-size: 1.4rem;
     width: 240px;
   }
@@ -360,7 +396,8 @@ body.dark .instruction{
   .heading {
     font-size: 4rem;
   }
-    .startbtn, .playwithcomputer {
+  .startbtn,
+  .playwithcomputer {
     font-size: 1.3rem;
     width: 220px;
     height: 70px;
@@ -377,14 +414,14 @@ body.dark .instruction{
   .box {
     font-size: 2rem;
   }
-  .display-score{
-    height: 40px;
+  .display-score {
+    height: fit-content;
   }
   .display-score div {
     font-size: 1rem;
     border-radius: 8px;
   }
-  .footer{
+  .footer {
     height: 40px;
     border-radius: 8px;
     bottom: 20px;
@@ -392,16 +429,16 @@ body.dark .instruction{
   .footer button {
     font-size: 1rem;
   }
-    #continue-btn-box{
+  body.gradient .footer button {
+    background-color: transparent;
+  }
+  #continue-btn-box {
     bottom: 440px;
   }
-  #continue-btn{
+  #continue-btn {
     width: 140px;
     height: 60px;
     font-size: 1.8rem;
-  }
-    .instruction{
-    display: none;
   }
 }
 
@@ -413,7 +450,8 @@ body.dark .instruction{
   .heading {
     font-size: 4rem;
   }
-    .startbtn, .playwithcomputer {
+  .startbtn,
+  .playwithcomputer {
     font-size: 1.3rem;
     width: 220px;
     height: 70px;
@@ -431,24 +469,27 @@ body.dark .instruction{
   .box {
     font-size: 2rem;
   }
-  .display-score{
-    height: 40px;
+  .display-score {
+    height: fit-content;
     background-color: transparent;
 
     flex-direction: column;
     position: relative;
     bottom: 20px;
   }
+  body.gradient .display-score {
+    background-color: transparent;
+  }
   .display-score div {
     font-size: 1rem;
     border-radius: 8px;
   }
-  .footer{
+  .footer {
     height: 40px;
     width: 60%;
     border-radius: 8px;
     background-color: transparent;
-    
+
     position: absolute;
     bottom: -130px;
   }
@@ -456,21 +497,29 @@ body.dark .instruction{
     font-size: 1rem;
     background-color: rgb(14, 14, 14);
   }
-    #continue-btn-box{
+  body.gradient .footer button {
+    background-color: transparent;
+  }
+  body.dark #theme-choice p{
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  #continue-btn-box {
     bottom: 300px;
   }
-  #continue-btn{
+  #continue-btn {
     width: 140px;
     height: 60px;
     font-size: 1.4rem;
   }
-  .instruction{
-    display: none;
-  }
-  .runningStatus{
+  .runningStatus {
     font-size: 1.5rem;
     position: relative;
     bottom: 40px;
   }
+  .instruction > span{
+    display: none;
+  }
+  .instruction #theme{
+    padding: 4px 8px;
+  }
 }
-

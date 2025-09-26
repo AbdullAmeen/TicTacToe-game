@@ -76,16 +76,53 @@ function boxClickedCom() {
 }
 
 function makeComputerMove() {
+  const winPatterns = [
+    [0,1,2],[3,4,5],[6,7,8], // rows
+    [0,3,6],[1,4,7],[2,5,8], // cols
+    [0,4,8],[2,4,6]          // diagonals
+  ];
+
+  // 1. Try to win
+  for (let [a, b, c] of winPatterns) {
+    if (options[a] === "o" && options[b] === "o" && options[c] === "") return playMove(c);
+    if (options[a] === "o" && options[c] === "o" && options[b] === "") return playMove(b);
+    if (options[b] === "o" && options[c] === "o" && options[a] === "") return playMove(a);
+  }
+
+  // 2. Block opponent
+  for (let [a, b, c] of winPatterns) {
+    if (options[a] === "x" && options[b] === "x" && options[c] === "") return playMove(c);
+    if (options[a] === "x" && options[c] === "x" && options[b] === "") return playMove(b);
+    if (options[b] === "x" && options[c] === "x" && options[a] === "") return playMove(a);
+  }
+
+  let randomBool = Math.random() > 0.5;
+  if(randomBool){
+    // 3. Take center
+    if (options[4] === "") return playMove(4);
+  }else{
+    // 4. Take a corner
+    for (let i of [0, 2, 6, 8]) {
+      if (options[i] === "") return playMove(i);
+    }
+  }
+
+  // 5. Otherwise random
   const availableBoxes = [];
   for (let i = 0; i < options.length; i++) {
     if (options[i] === "") availableBoxes.push(i);
   }
-  if (availableBoxes.length === 0) return;
-  const randomIndex = Math.floor(Math.random() * availableBoxes.length);
-  const computerMove = availableBoxes[randomIndex];
-  updateBox(box[computerMove], computerMove, "o");
-  checkWin();
+  if (availableBoxes.length > 0) {
+    const randomIndex = Math.floor(Math.random() * availableBoxes.length);
+    return playMove(availableBoxes[randomIndex]);
+  }
+
+  function playMove(index) {
+    updateBox(box[index], index, "o");
+    checkWin();
+  }
 }
+
 
 // Add this function for player-vs-player mode
 function boxClicked() {
@@ -275,9 +312,15 @@ themeChoiceBtn.forEach((btn) => {
       document.body.className = "dark";
       localStorage.setItem("theme", "dark");
       themeChoice.classList.toggle("active");
-    } else if (btn.id === "default-theme") {
+    } 
+    else if (btn.id === "default-theme") {
       document.body.className = "default";
       localStorage.setItem("theme", "default");
+      themeChoice.classList.toggle("active");
+    }
+    else if (btn.id === "gradient-theme") {
+      document.body.className = "gradient";
+      localStorage.setItem("theme", "gradient");
       themeChoice.classList.toggle("active");
     }
   });
