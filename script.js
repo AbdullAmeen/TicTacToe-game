@@ -8,6 +8,8 @@ const box = document.querySelectorAll(".box");
 const restartbtn = document.getElementById("restartbtn");
 const runningStatus = document.querySelector(".runningStatus");
 
+const quitTxt = document.querySelector(".quitTxt");
+
 // Score Elements
 const winEl = document.querySelector("#win span");
 const lossEl = document.querySelector("#loss span");
@@ -134,6 +136,7 @@ function boxClicked() {
 
 // Open computer game screen
 function openComGame(e) {
+  quitTxt.style.display = "block";
   isComputerMode = true;
   gameContainer.style.display = "flex";
   heading.style.display = "none";
@@ -259,6 +262,7 @@ function restartGame() {
 
 // Open friend game screen
 function openGame() {
+  quitTxt.style.display = "block";
   isComputerMode = false;
   gameContainer.style.display = "flex";
   heading.style.display = "none";

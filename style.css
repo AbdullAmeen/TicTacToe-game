@@ -325,7 +325,9 @@ body.gradient .footer {
 #theme-choice.active {
   display: block;
 }
-
+.quitTxt{
+  display: none;
+}
 /* media queries */
 
 /* For tablets: */
