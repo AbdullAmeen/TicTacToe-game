@@ -329,3 +329,14 @@ themeChoiceBtn.forEach((btn) => {
     }
   });
 });
+
+// github icon
+const github = document.getElementById("github-img");
+github.addEventListener("click", () => {
+  window.open("https://github.com/AbdullAmeen/TicTacToe-game", "_blank");
+});
+
+setTimeout(() => {
+  github.style.display = "none";
+}, 10000);
+
